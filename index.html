@@ -15,33 +15,11 @@
     <link rel="stylesheet" media="print" href="pub/css/print.css">
     <link rel="stylesheet" media="screen" href="pub/css/darkula.css">
     
-      <script src="source/javascripts/lib/_jquery.js"></script>
-<script src="source/javascripts/lib/_jquery.highlight.js"></script>
-<script src="source/javascripts/lib/_lunr.js"></script>
-<script src="source/javascripts/lib/_imagesloaded.min.js"></script>
-<script src="source/javascripts/lib/_energize.js"></script>
-<script src="source/javascripts/app/_lang.js"></script>
-<script src="source/javascripts/app/_search.js"></script>
-<script src="source/javascripts/app/_toc.js"></script>
-<script type="text/javascript">
-$(function() {
-  loadToc($('#toc'), '.toc-link', '.toc-list-h2, .toc-list-h3, .toc-list-h4, .toc-list-h5, .toc-list-h6', 10);
-  setupLanguages($('body').data('languages'));
-  $('.content').imagesLoaded( function() {
-    recacheHeights();
-    refreshToc();
-  });
-});
-
-window.onpopstate = function() {
-  activateLanguage(getLanguageFromQueryString());
-};
-</script>
+      <script src="pub/js/shins.js"></script>
 
     
-    <!-- shins; content for the head element from source/includes/_head.md -->
-<meta name="theme-color" content="#F3F7F9">
-<!-- Renderer: Shins v2.3.2-3 -->
+    <meta name="theme-color" content="#F3F7F9" />
+<!-- Renderer: Shins v2.3.2-4 -->
 <!-- Generator: Widdershins v3.6.6 -->
   </head>
 
@@ -289,8 +267,7 @@ window.onpopstate = function() {
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <!-- Generator: Widdershins v3.6.6 -->
-<h1 id="swagger-petstore">Swagger Petstore v1.0.0</h1>
+        <h1 id="swagger-petstore">Swagger Petstore v1.0.0</h1>
 <blockquote>
 <p>Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.</p>
 </blockquote>
@@ -4795,18 +4772,7 @@ This operation does not require authentication
 </tr>
 </tbody>
 </table>
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org/",
-  "@type": "WebAPI",
-  "description": ":dog: :cat: :rabbit: This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters.",
-  "documentation": "https://mermade.github.io/shins/asyncapi.html",
-  "termsOfService": "http://swagger.io/terms/",
-  
-  "name": "Swagger Petstore"
-}
-</script>
-<!-- Renderer: Shins v2.3.2-3 -->
+<!-- Renderer: Shins v2.3.2-4 -->
 <!-- Generator: Widdershins v3.6.6 -->
       </div>
       <div class="dark-box">

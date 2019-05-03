@@ -1,0 +1,265 @@
+swagger: "2.0"
+info:
+  description: "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters."
+  version: "1.0.0"
+  title: "Inboxes Developer API"
+  termsOfService: "http://inboxes.com/terms/"
+  contact:
+    email: "info@inboxes.com"
+host: "api.inboxes.com"
+basePath: "/v2"
+tags:
+- name: "domain"
+  description: "Before you can add inboxes you need to add or see which domains are available"
+- name: "inbox"
+  description: "Everything about your inboxes"
+- name: "message"
+  description: "Access to inbox messages"
+- name: "attachment"
+  description: "Everything about a message attachments"
+- name: "webhook"
+  description: "get a new webhook everytime a message is recived"
+schemes:
+- "https"
+- "http"
+paths:
+  /domain:
+    get:
+      tags:
+      - "domain"
+      summary: "Get list of available domains"
+      description: "This will return both public and private domains"
+      operationId: "getAllDomains"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "type"
+        in: "query"
+        description: "Status values that need to be considered for filter"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+          enum:
+          - "available"
+          - "pending"
+          - "sold"
+          default: "available"
+        collectionFormat: "multi"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Domain"
+        400:
+          description: "Invalid status value"
+      security:
+      - api_key: []
+    post:
+      tags:
+      - "domain"
+      summary: "Add a new domain to be used by inboxes"
+      description: ""
+      operationId: "addDomain"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Domain object that you would like to add"
+        required: true
+        schema:
+          $ref: "#/definitions/DomainIn"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Domain"
+        405:
+          description: "Invalid input"
+      security:
+      - api_key: []
+  /domain/{domain_id}:
+    delete:
+      tags:
+      - "domain"
+      summary: "Deletes a custom added domain"
+      description: "Use this to delete domains you added"
+      operationId: "deleteDomain"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "domain_id"
+        in: "path"
+        description: "Domain id to delete"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Domain Deleted"
+        403:
+          description: "Not your domain to delete"
+        404:
+          description: "Domain not found"
+      security:
+      - api_key: []
+  /inbox:
+    get:
+      tags:
+      - "inbox"
+      summary: "Get list of available inboxes in your account"
+      responses:
+        200:
+          description: "List of inboxes"
+        404:
+          description: "not found"
+    post:
+      tags:
+      - "inbox"
+      summary: "Create a new inbox in your account"
+  /inbox/{inbox_id}:
+    delete:
+      tags:
+      - "inbox"
+      summary: "Get list of available inboxes in your account"
+  /inbox/messages/{inbox_id}:
+    get:
+      tags:
+      - "inbox"
+      summary: "Get list of available messages with subjects and ids "
+  /messages/{message_id}:
+    get:
+      tags:
+      - "message"
+      summary: "Get message contents"
+  /attachment/{attachment_id}:
+    get:
+      tags:
+      - "attachment"
+      summary: "download attachment id via this API call"
+  /webhook:
+    get:
+      tags:
+      - "webhook"
+      summary: "get list of web hooks you created"
+    post:
+      tags:
+      - "webhook"
+      summary: "create a new web hook"
+    delete:
+      tags:
+      - "webhook"
+      summary: "get list of web hooks you created"
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  Domain:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "44f567d3"
+      name:
+        type: "string"
+        description: "name of the domain"
+        example: "mydomain.com"
+      validate:
+        type: "string"
+        description: "DNS TXT record to add to validate ownership"
+        example: "d45f674367876fdbba"
+      status:
+        type: "string"
+        description: "Domain Status"
+        example: "awaiting_validation"
+        enum:
+        - "awaiting_validation"
+        - "validated"
+      active:
+        type: "boolean"
+        example: false
+        default: false
+  DomainIn:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        description: "name of the domain"
+        example: "mydomain.com"
+  Inbox:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        description: "Unique ID for this inbox"
+      name:
+        type: "string"
+        description: "user @ domain i.e me@theinboxes.com"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      username:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      phone:
+        type: "string"
+      userStatus:
+        type: "integer"
+        format: "int32"
+        description: "User Status"
+  Tag:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+  Pet:
+    type: "object"
+    required:
+    - "name"
+    - "photoUrls"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      category:
+        $ref: "#/definitions/DomainIn"
+      name:
+        type: "string"
+        example: "doggie"
+      photoUrls:
+        type: "array"
+        items:
+          type: "string"
+      tags:
+        type: "array"
+        items:
+          $ref: "#/definitions/Tag"
+      status:
+        type: "string"
+        description: "pet status in the store"
+        enum:
+        - "available"
+        - "pending"
+        - "sold"
+externalDocs:
+  description: "Find out more about Inboxes.com"
+  url: "http://inboxes.com"

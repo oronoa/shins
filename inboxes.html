@@ -1,0 +1,2907 @@
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Inboxes Developer API</title>
+
+    <style>
+    </style>
+    <link rel="stylesheet" media="screen" href="pub/css/screen.css">
+    <link rel="stylesheet" media="print" href="pub/css/print.css">
+    <link rel="stylesheet" media="screen" href="pub/css/darkula.css">
+    
+      <script src="source/javascripts/lib/_jquery.js"></script>
+<script src="source/javascripts/lib/_energize.js"></script>
+<script src="source/javascripts/app/_lang.js"></script>
+<script src="source/javascripts/app/_toc.js"></script>
+<script type="text/javascript">
+$(function() {
+  loadToc($('#toc'), '.toc-link', '.toc-list-h2, .toc-list-h3, .toc-list-h4, .toc-list-h5, .toc-list-h6', 10);
+  setupLanguages($('body').data('languages'));
+  $('.content').imagesLoaded( function() {
+    recacheHeights();
+    refreshToc();
+  });
+});
+
+window.onpopstate = function() {
+  activateLanguage(getLanguageFromQueryString());
+};
+</script>
+
+    
+    <meta name="theme-color" content="#F3F7F9" />
+<!-- Renderer: Shins v2.3.2-4 -->
+  </head>
+
+  <body data-languages="[&quot;ruby&quot;,&quot;python&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="source/images/navbar.png" class="undefined" alt="Navigation">
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="source/images/logo.png" class="logo" alt="Logo">
+      
+        <div class="lang-selector">
+          
+            
+              <a href="#" data-language-name="ruby">Ruby</a>
+            
+          
+            
+              <a href="#" data-language-name="python">Python</a>
+            
+          
+        </div>
+      
+      
+      <div id="toc" class="toc-list-h1">
+	  	<ul class="toc-list-h1">
+        
+          <li>
+            <a href="#inboxes-developer-api" class="toc-h1 toc-link" data-title="Inboxes Developer API v1.0.0">Inboxes Developer API v1.0.0</a>
+            
+          </li>
+        
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+            
+          </li>
+        
+          <li>
+            <a href="#inboxes-developer-api-domain" class="toc-h1 toc-link" data-title="domain">domain</a>
+            
+              <ul class="toc-list-h2">
+                
+                  <li>
+                    <a href="#add-a-new-domain-to-be-used-by-inboxes" class="toc-h2 toc-link" data-title="Add a new domain to be used by inboxes">Add a new domain to be used by inboxes</a>
+                    
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="#inboxes-developer-api-pet" class="toc-h1 toc-link" data-title="pet">pet</a>
+            
+              <ul class="toc-list-h2">
+                
+                  <li>
+                    <a href="#update-an-existing-pet" class="toc-h2 toc-link" data-title="Update an existing pet">Update an existing pet</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#finds-pets-by-status" class="toc-h2 toc-link" data-title="Finds Pets by status">Finds Pets by status</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#finds-pets-by-tags" class="toc-h2 toc-link" data-title="Finds Pets by tags">Finds Pets by tags</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#find-pet-by-id" class="toc-h2 toc-link" data-title="Find pet by ID">Find pet by ID</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#updates-a-pet-in-the-store-with-form-data" class="toc-h2 toc-link" data-title="Updates a pet in the store with form data">Updates a pet in the store with form data</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#deletes-a-pet" class="toc-h2 toc-link" data-title="Deletes a pet">Deletes a pet</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#uploads-an-image" class="toc-h2 toc-link" data-title="uploads an image">uploads an image</a>
+                    
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="#inboxes-developer-api-store" class="toc-h1 toc-link" data-title="store">store</a>
+            
+              <ul class="toc-list-h2">
+                
+                  <li>
+                    <a href="#returns-pet-inventories-by-status" class="toc-h2 toc-link" data-title="Returns pet inventories by status">Returns pet inventories by status</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#place-an-order-for-a-pet" class="toc-h2 toc-link" data-title="Place an order for a pet">Place an order for a pet</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#find-purchase-order-by-id" class="toc-h2 toc-link" data-title="Find purchase order by ID">Find purchase order by ID</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#delete-purchase-order-by-id" class="toc-h2 toc-link" data-title="Delete purchase order by ID">Delete purchase order by ID</a>
+                    
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="#inboxes-developer-api-user" class="toc-h1 toc-link" data-title="user">user</a>
+            
+              <ul class="toc-list-h2">
+                
+                  <li>
+                    <a href="#create-user" class="toc-h2 toc-link" data-title="Create user">Create user</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#creates-list-of-users-with-given-input-array" class="toc-h2 toc-link" data-title="Creates list of users with given input array">Creates list of users with given input array</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#logs-user-into-the-system" class="toc-h2 toc-link" data-title="Logs user into the system">Logs user into the system</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#logs-out-current-logged-in-user-session" class="toc-h2 toc-link" data-title="Logs out current logged in user session">Logs out current logged in user session</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#get-user-by-user-name" class="toc-h2 toc-link" data-title="Get user by user name">Get user by user name</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#updated-user" class="toc-h2 toc-link" data-title="Updated user">Updated user</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#delete-user" class="toc-h2 toc-link" data-title="Delete user">Delete user</a>
+                    
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="#schemas" class="toc-h1 toc-link" data-title="Schemas">Schemas</a>
+            
+              <ul class="toc-list-h2">
+                
+                  <li>
+                    <a href="#tocsdomain" class="toc-h2 toc-link" data-title="Domain">Domain</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#tocsdomainin" class="toc-h2 toc-link" data-title="DomainIn">DomainIn</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#tocsinbox" class="toc-h2 toc-link" data-title="Inbox">Inbox</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#tocsuser" class="toc-h2 toc-link" data-title="User">User</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#tocstag" class="toc-h2 toc-link" data-title="Tag">Tag</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#tocspet" class="toc-h2 toc-link" data-title="Pet">Pet</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#tocsapiresponse" class="toc-h2 toc-link" data-title="ApiResponse">ApiResponse</a>
+                    
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+		</ul>
+      </div>
+      
+        <ul class="toc-footer">
+          
+            <li><a href="http://swagger.io">Find out more about Swagger</a></li>
+          
+        </ul>
+      
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="inboxes-developer-api">Inboxes Developer API v1.0.0</h1>
+<blockquote>
+<p>Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.</p>
+</blockquote>
+<p>This is a sample server Petstore server.  You can find out more about     Swagger at <a href="http://swagger.io">http://swagger.io</a> or on <a href="http://swagger.io/irc/">irc.freenode.net, #swagger</a>.      For this sample, you can use the api key <code>special-key</code> to test the authorization     filters.</p>
+<p>Base URLs:</p>
+<ul>
+<li>
+<p><a href="https://api.inboxes.com/v2">https://api.inboxes.com/v2</a></p>
+</li>
+<li>
+<p><a href="http://api.inboxes.com/v2">http://api.inboxes.com/v2</a></p>
+</li>
+</ul>
+<p><a href="http://inboces.com/terms/">Terms of service</a>
+Email: <a href="mailto:info@inboxes.com">Support</a></p>
+<h1 id="authentication">Authentication</h1>
+<ul>
+<li>API Key (api_key)
+<ul>
+<li>Parameter Name: <strong>api_key</strong>, in: header.</li>
+</ul>
+</li>
+</ul>
+<h1 id="inboxes-developer-api-domain">domain</h1>
+<p>Everything about your Pets</p>
+<h2 id="add-a-new-domain-to-be-used-by-inboxes">Add a new domain to be used by inboxes</h2>
+<p><a id="opIdaddDomain"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Content-Type'</span> =&gt; <span class="hljs-string">'application/json'</span>,
+  <span class="hljs-string">'api_key'</span> =&gt; <span class="hljs-string">'API_KEY'</span>
+}
+
+result = RestClient.post <span class="hljs-string">'https://api.inboxes.com/v2/domain'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/json'</span>,
+  <span class="hljs-string">'api_key'</span>: <span class="hljs-string">'API_KEY'</span>
+}
+
+r = requests.post(<span class="hljs-string">'https://api.inboxes.com/v2/domain'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>POST /domain</code></p>
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"mydomain.com"</span>
+}
+</code></pre>
+<h3 id="add-a-new-domain-to-be-used-by-inboxes-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schemadomainin">DomainIn</a></td>
+<td>true</td>
+<td>Domain object that you would like to add</td>
+</tr>
+</tbody>
+</table>
+<h3 id="add-a-new-domain-to-be-used-by-inboxes-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>405</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.5">Method Not Allowed</a></td>
+<td>Invalid input</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+api_key
+</aside>
+<h1 id="inboxes-developer-api-pet">pet</h1>
+<h2 id="update-an-existing-pet">Update an existing pet</h2>
+<p><a id="opIdupdatePet"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Content-Type'</span> =&gt; <span class="hljs-string">'application/json'</span>,
+  <span class="hljs-string">'api_key'</span> =&gt; <span class="hljs-string">'API_KEY'</span>
+}
+
+result = RestClient.put <span class="hljs-string">'https://api.inboxes.com/v2/domain'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/json'</span>,
+  <span class="hljs-string">'api_key'</span>: <span class="hljs-string">'API_KEY'</span>
+}
+
+r = requests.put(<span class="hljs-string">'https://api.inboxes.com/v2/domain'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>PUT /domain</code></p>
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"category"</span>: {
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"mydomain.com"</span>
+  },
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"doggie"</span>,
+  <span class="hljs-attr">"photoUrls"</span>: [
+    <span class="hljs-string">"string"</span>
+  ],
+  <span class="hljs-attr">"tags"</span>: [
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>
+    }
+  ],
+  <span class="hljs-attr">"status"</span>: <span class="hljs-string">"available"</span>
+}
+</code></pre>
+<pre class="highlight tab tab-xml"><code><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span> <span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Pet</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">category</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>mydomain.com<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">category</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>doggie<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">photoUrls</span>&gt;</span>string<span class="hljs-tag">&lt;/<span class="hljs-name">photoUrls</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">tags</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>string<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">tags</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">status</span>&gt;</span>available<span class="hljs-tag">&lt;/<span class="hljs-name">status</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Pet</span>&gt;</span>
+</code></pre>
+<h3 id="update-an-existing-pet-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schemapet">Pet</a></td>
+<td>true</td>
+<td>Pet object that needs to be added to the store</td>
+</tr>
+</tbody>
+</table>
+<h3 id="update-an-existing-pet-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Invalid ID supplied</td>
+<td>None</td>
+</tr>
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Pet not found</td>
+<td>None</td>
+</tr>
+<tr>
+<td>405</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.5">Method Not Allowed</a></td>
+<td>Validation exception</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+api_key
+</aside>
+<h2 id="finds-pets-by-status">Finds Pets by status</h2>
+<p><a id="opIdfindPetsByStatus"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/xml'</span>,
+  <span class="hljs-string">'api_key'</span> =&gt; <span class="hljs-string">'API_KEY'</span>
+}
+
+result = RestClient.get <span class="hljs-string">'https://api.inboxes.com/v2/pet/findByStatus'</span>,
+  <span class="hljs-symbol">params:</span> {
+  <span class="hljs-string">'status'</span> =&gt; <span class="hljs-string">'array[string]'</span>
+}, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/xml'</span>,
+  <span class="hljs-string">'api_key'</span>: <span class="hljs-string">'API_KEY'</span>
+}
+
+r = requests.get(<span class="hljs-string">'https://api.inboxes.com/v2/pet/findByStatus'</span>, params={
+  <span class="hljs-string">'status'</span>: [
+  <span class="hljs-string">"available"</span>
+]
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>GET /pet/findByStatus</code></p>
+<p>Multiple status values can be provided with comma separated strings</p>
+<h3 id="finds-pets-by-status-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>status</td>
+<td>query</td>
+<td>array[string]</td>
+<td>true</td>
+<td>Status values that need to be considered for filter</td>
+</tr>
+</tbody>
+</table>
+<h4 id="enumerated-values">Enumerated Values</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>status</td>
+<td>available</td>
+</tr>
+<tr>
+<td>status</td>
+<td>pending</td>
+</tr>
+<tr>
+<td>status</td>
+<td>sold</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-xml"><code><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span> <span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">category</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>mydomain.com<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">category</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>doggie<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">photoUrls</span>&gt;</span>string<span class="hljs-tag">&lt;/<span class="hljs-name">photoUrls</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">tags</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>string<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tags</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">status</span>&gt;</span>available<span class="hljs-tag">&lt;/<span class="hljs-name">status</span>&gt;</span>
+</code></pre>
+<pre class="highlight tab tab-json"><code>[
+  {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-attr">"category"</span>: {
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"mydomain.com"</span>
+    },
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"doggie"</span>,
+    <span class="hljs-attr">"photoUrls"</span>: [
+      <span class="hljs-string">"string"</span>
+    ],
+    <span class="hljs-attr">"tags"</span>: [
+      {
+        <span class="hljs-attr">"id"</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>
+      }
+    ],
+    <span class="hljs-attr">"status"</span>: <span class="hljs-string">"available"</span>
+  }
+]
+</code></pre>
+<h3 id="finds-pets-by-status-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>successful operation</td>
+<td>Inline</td>
+</tr>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Invalid status value</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h3 id="finds-pets-by-status-responseschema">Response Schema</h3>
+<p>Status Code <strong>200</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>anonymous</em></td>
+<td>[<a href="#schemapet">Pet</a>]</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» id</td>
+<td>integer(int64)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» category</td>
+<td><a href="#schemadomainin">DomainIn</a></td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»» name</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>name of the domain</td>
+</tr>
+<tr>
+<td>» name</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» photoUrls</td>
+<td>[string]</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» tags</td>
+<td>[<a href="#schematag">Tag</a>]</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»» id</td>
+<td>integer(int64)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»» name</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» status</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>pet status in the store</td>
+</tr>
+</tbody>
+</table>
+<h4 id="enumerated-values">Enumerated Values</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>status</td>
+<td>available</td>
+</tr>
+<tr>
+<td>status</td>
+<td>pending</td>
+</tr>
+<tr>
+<td>status</td>
+<td>sold</td>
+</tr>
+</tbody>
+</table>
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+api_key
+</aside>
+<h2 id="finds-pets-by-tags">Finds Pets by tags</h2>
+<p><a id="opIdfindPetsByTags"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/xml'</span>,
+  <span class="hljs-string">'api_key'</span> =&gt; <span class="hljs-string">'API_KEY'</span>
+}
+
+result = RestClient.get <span class="hljs-string">'https://api.inboxes.com/v2/pet/findByTags'</span>,
+  <span class="hljs-symbol">params:</span> {
+  <span class="hljs-string">'tags'</span> =&gt; <span class="hljs-string">'array[string]'</span>
+}, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/xml'</span>,
+  <span class="hljs-string">'api_key'</span>: <span class="hljs-string">'API_KEY'</span>
+}
+
+r = requests.get(<span class="hljs-string">'https://api.inboxes.com/v2/pet/findByTags'</span>, params={
+  <span class="hljs-string">'tags'</span>: [
+  <span class="hljs-string">"string"</span>
+]
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>GET /pet/findByTags</code></p>
+<p>Muliple tags can be provided with comma separated strings. Use         tag1, tag2, tag3 for testing.</p>
+<h3 id="finds-pets-by-tags-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tags</td>
+<td>query</td>
+<td>array[string]</td>
+<td>true</td>
+<td>Tags to filter by</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-xml"><code><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span> <span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">category</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>mydomain.com<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">category</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>doggie<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">photoUrls</span>&gt;</span>string<span class="hljs-tag">&lt;/<span class="hljs-name">photoUrls</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">tags</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>string<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tags</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">status</span>&gt;</span>available<span class="hljs-tag">&lt;/<span class="hljs-name">status</span>&gt;</span>
+</code></pre>
+<pre class="highlight tab tab-json"><code>[
+  {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-attr">"category"</span>: {
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"mydomain.com"</span>
+    },
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"doggie"</span>,
+    <span class="hljs-attr">"photoUrls"</span>: [
+      <span class="hljs-string">"string"</span>
+    ],
+    <span class="hljs-attr">"tags"</span>: [
+      {
+        <span class="hljs-attr">"id"</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>
+      }
+    ],
+    <span class="hljs-attr">"status"</span>: <span class="hljs-string">"available"</span>
+  }
+]
+</code></pre>
+<h3 id="finds-pets-by-tags-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>successful operation</td>
+<td>Inline</td>
+</tr>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Invalid tag value</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h3 id="finds-pets-by-tags-responseschema">Response Schema</h3>
+<p>Status Code <strong>200</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>anonymous</em></td>
+<td>[<a href="#schemapet">Pet</a>]</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» id</td>
+<td>integer(int64)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» category</td>
+<td><a href="#schemadomainin">DomainIn</a></td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»» name</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>name of the domain</td>
+</tr>
+<tr>
+<td>» name</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» photoUrls</td>
+<td>[string]</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» tags</td>
+<td>[<a href="#schematag">Tag</a>]</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»» id</td>
+<td>integer(int64)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>»» name</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» status</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>pet status in the store</td>
+</tr>
+</tbody>
+</table>
+<h4 id="enumerated-values">Enumerated Values</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>status</td>
+<td>available</td>
+</tr>
+<tr>
+<td>status</td>
+<td>pending</td>
+</tr>
+<tr>
+<td>status</td>
+<td>sold</td>
+</tr>
+</tbody>
+</table>
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+api_key
+</aside>
+<h2 id="find-pet-by-id">Find pet by ID</h2>
+<p><a id="opIdgetPetById"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/xml'</span>,
+  <span class="hljs-string">'api_key'</span> =&gt; <span class="hljs-string">'API_KEY'</span>
+}
+
+result = RestClient.get <span class="hljs-string">'https://api.inboxes.com/v2/pet/{petId}'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/xml'</span>,
+  <span class="hljs-string">'api_key'</span>: <span class="hljs-string">'API_KEY'</span>
+}
+
+r = requests.get(<span class="hljs-string">'https://api.inboxes.com/v2/pet/{petId}'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>GET /pet/{petId}</code></p>
+<p>Returns a single pet</p>
+<h3 id="find-pet-by-id-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>petId</td>
+<td>path</td>
+<td>integer(int64)</td>
+<td>true</td>
+<td>ID of pet to return</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-xml"><code><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span> <span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Pet</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">category</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>mydomain.com<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">category</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>doggie<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">photoUrls</span>&gt;</span>string<span class="hljs-tag">&lt;/<span class="hljs-name">photoUrls</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">tags</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>string<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">tags</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">status</span>&gt;</span>available<span class="hljs-tag">&lt;/<span class="hljs-name">status</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Pet</span>&gt;</span>
+</code></pre>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"category"</span>: {
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"mydomain.com"</span>
+  },
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"doggie"</span>,
+  <span class="hljs-attr">"photoUrls"</span>: [
+    <span class="hljs-string">"string"</span>
+  ],
+  <span class="hljs-attr">"tags"</span>: [
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>
+    }
+  ],
+  <span class="hljs-attr">"status"</span>: <span class="hljs-string">"available"</span>
+}
+</code></pre>
+<h3 id="find-pet-by-id-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>successful operation</td>
+<td><a href="#schemapet">Pet</a></td>
+</tr>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Invalid ID supplied</td>
+<td>None</td>
+</tr>
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Pet not found</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+api_key
+</aside>
+<h2 id="updates-a-pet-in-the-store-with-form-data">Updates a pet in the store with form data</h2>
+<p><a id="opIdupdatePetWithForm"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Content-Type'</span> =&gt; <span class="hljs-string">'application/x-www-form-urlencoded'</span>,
+  <span class="hljs-string">'api_key'</span> =&gt; <span class="hljs-string">'API_KEY'</span>
+}
+
+result = RestClient.post <span class="hljs-string">'https://api.inboxes.com/v2/pet/{petId}'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/x-www-form-urlencoded'</span>,
+  <span class="hljs-string">'api_key'</span>: <span class="hljs-string">'API_KEY'</span>
+}
+
+r = requests.post(<span class="hljs-string">'https://api.inboxes.com/v2/pet/{petId}'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>POST /pet/{petId}</code></p>
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+<pre class="highlight tab tab-yaml"><code><span class="hljs-attr">name:</span> <span class="hljs-string">string</span>
+<span class="hljs-attr">status:</span> <span class="hljs-string">string</span>
+
+</code></pre>
+<h3 id="updates-a-pet-in-the-store-with-form-data-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>petId</td>
+<td>path</td>
+<td>integer(int64)</td>
+<td>true</td>
+<td>ID of pet that needs to be updated</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» name</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>Updated name of the pet</td>
+</tr>
+<tr>
+<td>» status</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>Updated status of the pet</td>
+</tr>
+</tbody>
+</table>
+<h3 id="updates-a-pet-in-the-store-with-form-data-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>405</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.5">Method Not Allowed</a></td>
+<td>Invalid input</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+api_key
+</aside>
+<h2 id="deletes-a-pet">Deletes a pet</h2>
+<p><a id="opIddeletePet"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'api_key'</span> =&gt; <span class="hljs-string">'string'</span>,
+  <span class="hljs-string">'api_key'</span> =&gt; <span class="hljs-string">'API_KEY'</span>
+}
+
+result = RestClient.delete <span class="hljs-string">'https://api.inboxes.com/v2/pet/{petId}'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'api_key'</span>: <span class="hljs-string">'string'</span>,
+  <span class="hljs-string">'api_key'</span>: <span class="hljs-string">'API_KEY'</span>
+}
+
+r = requests.delete(<span class="hljs-string">'https://api.inboxes.com/v2/pet/{petId}'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>DELETE /pet/{petId}</code></p>
+<h3 id="deletes-a-pet-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_key</td>
+<td>header</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+</tr>
+<tr>
+<td>petId</td>
+<td>path</td>
+<td>integer(int64)</td>
+<td>true</td>
+<td>Pet id to delete</td>
+</tr>
+</tbody>
+</table>
+<h3 id="deletes-a-pet-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Invalid ID supplied</td>
+<td>None</td>
+</tr>
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Pet not found</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+api_key
+</aside>
+<h2 id="uploads-an-image">uploads an image</h2>
+<p><a id="opIduploadFile"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Content-Type'</span> =&gt; <span class="hljs-string">'multipart/form-data'</span>,
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/json'</span>,
+  <span class="hljs-string">'api_key'</span> =&gt; <span class="hljs-string">'API_KEY'</span>
+}
+
+result = RestClient.post <span class="hljs-string">'https://api.inboxes.com/v2/pet/{petId}/uploadImage'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'multipart/form-data'</span>,
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/json'</span>,
+  <span class="hljs-string">'api_key'</span>: <span class="hljs-string">'API_KEY'</span>
+}
+
+r = requests.post(<span class="hljs-string">'https://api.inboxes.com/v2/pet/{petId}/uploadImage'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>POST /pet/{petId}/uploadImage</code></p>
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+<pre class="highlight tab tab-yaml"><code><span class="hljs-attr">additionalMetadata:</span> <span class="hljs-string">string</span>
+<span class="hljs-attr">file:</span> <span class="hljs-string">string</span>
+
+</code></pre>
+<h3 id="uploads-an-image-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>petId</td>
+<td>path</td>
+<td>integer(int64)</td>
+<td>true</td>
+<td>ID of pet to update</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+</tr>
+<tr>
+<td>» additionalMetadata</td>
+<td>body</td>
+<td>string</td>
+<td>false</td>
+<td>Additional data to pass to server</td>
+</tr>
+<tr>
+<td>» file</td>
+<td>body</td>
+<td>string(binary)</td>
+<td>false</td>
+<td>file to upload</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"code"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"string"</span>
+}
+</code></pre>
+<h3 id="uploads-an-image-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>successful operation</td>
+<td><a href="#schemaapiresponse">ApiResponse</a></td>
+</tr>
+</tbody>
+</table>
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+api_key
+</aside>
+<h1 id="inboxes-developer-api-store">store</h1>
+<h2 id="returns-pet-inventories-by-status">Returns pet inventories by status</h2>
+<p><a id="opIdgetInventory"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/json'</span>,
+  <span class="hljs-string">'api_key'</span> =&gt; <span class="hljs-string">'API_KEY'</span>
+}
+
+result = RestClient.get <span class="hljs-string">'https://api.inboxes.com/v2/store/inventory'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/json'</span>,
+  <span class="hljs-string">'api_key'</span>: <span class="hljs-string">'API_KEY'</span>
+}
+
+r = requests.get(<span class="hljs-string">'https://api.inboxes.com/v2/store/inventory'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>GET /store/inventory</code></p>
+<p>Returns a map of status codes to quantities</p>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"property1"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"property2"</span>: <span class="hljs-number">0</span>
+}
+</code></pre>
+<h3 id="returns-pet-inventories-by-status-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>successful operation</td>
+<td>Inline</td>
+</tr>
+</tbody>
+</table>
+<h3 id="returns-pet-inventories-by-status-responseschema">Response Schema</h3>
+<p>Status Code <strong>200</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>» <strong>additionalProperties</strong></td>
+<td>integer(int32)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+api_key
+</aside>
+<h2 id="place-an-order-for-a-pet">Place an order for a pet</h2>
+<p><a id="opIdplaceOrder"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Content-Type'</span> =&gt; <span class="hljs-string">'application/json'</span>,
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/xml'</span>
+}
+
+result = RestClient.post <span class="hljs-string">'https://api.inboxes.com/v2/store/order'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/json'</span>,
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/xml'</span>
+}
+
+r = requests.post(<span class="hljs-string">'https://api.inboxes.com/v2/store/order'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>POST /store/order</code></p>
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"validate"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"status"</span>: <span class="hljs-string">"missing validation"</span>,
+  <span class="hljs-attr">"active"</span>: <span class="hljs-literal">false</span>
+}
+</code></pre>
+<h3 id="place-an-order-for-a-pet-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schemadomain">Domain</a></td>
+<td>true</td>
+<td>order placed for purchasing the pet</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-xml"><code><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span> <span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Domain</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>string<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>string<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">validate</span>&gt;</span>string<span class="hljs-tag">&lt;/<span class="hljs-name">validate</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">status</span>&gt;</span>missing validation<span class="hljs-tag">&lt;/<span class="hljs-name">status</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">active</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">active</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Domain</span>&gt;</span>
+</code></pre>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"validate"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"status"</span>: <span class="hljs-string">"missing validation"</span>,
+  <span class="hljs-attr">"active"</span>: <span class="hljs-literal">false</span>
+}
+</code></pre>
+<h3 id="place-an-order-for-a-pet-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>successful operation</td>
+<td><a href="#schemadomain">Domain</a></td>
+</tr>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Invalid Order</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h2 id="find-purchase-order-by-id">Find purchase order by ID</h2>
+<p><a id="opIdgetOrderById"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/xml'</span>
+}
+
+result = RestClient.get <span class="hljs-string">'https://api.inboxes.com/v2/store/order/{orderId}'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/xml'</span>
+}
+
+r = requests.get(<span class="hljs-string">'https://api.inboxes.com/v2/store/order/{orderId}'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>GET /store/order/{orderId}</code></p>
+<p>For valid response try integer IDs with value &gt;= 1 and &lt;= 10.         Other values will generated exceptions</p>
+<h3 id="find-purchase-order-by-id-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>orderId</td>
+<td>path</td>
+<td>integer(int64)</td>
+<td>true</td>
+<td>ID of pet that needs to be fetched</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-xml"><code><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span> <span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">DomainIn</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>mydomain.com<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">DomainIn</span>&gt;</span>
+</code></pre>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"mydomain.com"</span>
+}
+</code></pre>
+<h3 id="find-purchase-order-by-id-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>successful operation</td>
+<td><a href="#schemadomainin">DomainIn</a></td>
+</tr>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Invalid ID supplied</td>
+<td>None</td>
+</tr>
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Order not found</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h2 id="delete-purchase-order-by-id">Delete purchase order by ID</h2>
+<p><a id="opIddeleteOrder"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+result = RestClient.delete <span class="hljs-string">'https://api.inboxes.com/v2/store/order/{orderId}'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+
+r = requests.delete(<span class="hljs-string">'https://api.inboxes.com/v2/store/order/{orderId}'</span>, params={
+
+)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>DELETE /store/order/{orderId}</code></p>
+<p>For valid response try integer IDs with positive integer value.         Negative or non-integer values will generate API errors</p>
+<h3 id="delete-purchase-order-by-id-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>orderId</td>
+<td>path</td>
+<td>integer(int64)</td>
+<td>true</td>
+<td>ID of the order that needs to be deleted</td>
+</tr>
+</tbody>
+</table>
+<h3 id="delete-purchase-order-by-id-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Invalid ID supplied</td>
+<td>None</td>
+</tr>
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>Order not found</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h1 id="inboxes-developer-api-user">user</h1>
+<h2 id="create-user">Create user</h2>
+<p><a id="opIdcreateUser"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Content-Type'</span> =&gt; <span class="hljs-string">'application/json'</span>
+}
+
+result = RestClient.post <span class="hljs-string">'https://api.inboxes.com/v2/user'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/json'</span>
+}
+
+r = requests.post(<span class="hljs-string">'https://api.inboxes.com/v2/user'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>POST /user</code></p>
+<p>This can only be done by the logged in user.</p>
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"username"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"email"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"password"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"phone"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"userStatus"</span>: <span class="hljs-number">0</span>
+}
+</code></pre>
+<h3 id="create-user-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schemauser">User</a></td>
+<td>true</td>
+<td>Created user object</td>
+</tr>
+</tbody>
+</table>
+<h3 id="create-user-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>default</td>
+<td>Default</td>
+<td>successful operation</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h2 id="creates-list-of-users-with-given-input-array">Creates list of users with given input array</h2>
+<p><a id="opIdcreateUsersWithListInput"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Content-Type'</span> =&gt; <span class="hljs-string">'application/json'</span>
+}
+
+result = RestClient.post <span class="hljs-string">'https://api.inboxes.com/v2/user/createWithList'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/json'</span>
+}
+
+r = requests.post(<span class="hljs-string">'https://api.inboxes.com/v2/user/createWithList'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>POST /user/createWithList</code></p>
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>[
+  {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-attr">"username"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"email"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"password"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"phone"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"userStatus"</span>: <span class="hljs-number">0</span>
+  }
+]
+</code></pre>
+<h3 id="creates-list-of-users-with-given-input-array-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schemauserarray">UserArray</a></td>
+<td>true</td>
+<td>List of user object</td>
+</tr>
+</tbody>
+</table>
+<h3 id="creates-list-of-users-with-given-input-array-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>default</td>
+<td>Default</td>
+<td>successful operation</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h2 id="logs-user-into-the-system">Logs user into the system</h2>
+<p><a id="opIdloginUser"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/xml'</span>
+}
+
+result = RestClient.get <span class="hljs-string">'https://api.inboxes.com/v2/user/login'</span>,
+  <span class="hljs-symbol">params:</span> {
+  <span class="hljs-string">'username'</span> =&gt; <span class="hljs-string">'string'</span>,
+<span class="hljs-string">'password'</span> =&gt; <span class="hljs-string">'string'</span>
+}, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/xml'</span>
+}
+
+r = requests.get(<span class="hljs-string">'https://api.inboxes.com/v2/user/login'</span>, params={
+  <span class="hljs-string">'username'</span>: <span class="hljs-string">'string'</span>,  <span class="hljs-string">'password'</span>: <span class="hljs-string">'string'</span>
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>GET /user/login</code></p>
+<h3 id="logs-user-into-the-system-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>username</td>
+<td>query</td>
+<td>string</td>
+<td>true</td>
+<td>The user name for login</td>
+</tr>
+<tr>
+<td>password</td>
+<td>query</td>
+<td>string</td>
+<td>true</td>
+<td>The password for login in clear text</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code><span class="hljs-string">"string"</span>
+</code></pre>
+<h3 id="logs-user-into-the-system-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>successful operation</td>
+<td>string</td>
+</tr>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Invalid username/password supplied</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h3 id="response-headers">Response Headers</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Header</th>
+<th>Type</th>
+<th>Format</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>X-Rate-Limit</td>
+<td>integer</td>
+<td>int32</td>
+<td>calls per hour allowed by the user</td>
+</tr>
+<tr>
+<td>200</td>
+<td>X-Expires-After</td>
+<td>string</td>
+<td>date-time</td>
+<td>date in UTC when token expires</td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h2 id="logs-out-current-logged-in-user-session">Logs out current logged in user session</h2>
+<p><a id="opIdlogoutUser"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+result = RestClient.get <span class="hljs-string">'https://api.inboxes.com/v2/user/logout'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+
+r = requests.get(<span class="hljs-string">'https://api.inboxes.com/v2/user/logout'</span>, params={
+
+)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>GET /user/logout</code></p>
+<h3 id="logs-out-current-logged-in-user-session-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>default</td>
+<td>Default</td>
+<td>successful operation</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h2 id="get-user-by-user-name">Get user by user name</h2>
+<p><a id="opIdgetUserByName"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/xml'</span>
+}
+
+result = RestClient.get <span class="hljs-string">'https://api.inboxes.com/v2/user/{username}'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/xml'</span>
+}
+
+r = requests.get(<span class="hljs-string">'https://api.inboxes.com/v2/user/{username}'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>GET /user/{username}</code></p>
+<h3 id="get-user-by-user-name-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>username</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The name that needs to be fetched. Use user1 for testing.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-xml"><code><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span> <span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">User</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">username</span>&gt;</span>string<span class="hljs-tag">&lt;/<span class="hljs-name">username</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">firstName</span>&gt;</span>string<span class="hljs-tag">&lt;/<span class="hljs-name">firstName</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">lastName</span>&gt;</span>string<span class="hljs-tag">&lt;/<span class="hljs-name">lastName</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">email</span>&gt;</span>string<span class="hljs-tag">&lt;/<span class="hljs-name">email</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">password</span>&gt;</span>string<span class="hljs-tag">&lt;/<span class="hljs-name">password</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">phone</span>&gt;</span>string<span class="hljs-tag">&lt;/<span class="hljs-name">phone</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">userStatus</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">userStatus</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">User</span>&gt;</span>
+</code></pre>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"username"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"email"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"password"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"phone"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"userStatus"</span>: <span class="hljs-number">0</span>
+}
+</code></pre>
+<h3 id="get-user-by-user-name-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>successful operation</td>
+<td><a href="#schemauser">User</a></td>
+</tr>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Invalid username supplied</td>
+<td>None</td>
+</tr>
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>User not found</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h2 id="updated-user">Updated user</h2>
+<p><a id="opIdupdateUser"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Content-Type'</span> =&gt; <span class="hljs-string">'application/json'</span>
+}
+
+result = RestClient.put <span class="hljs-string">'https://api.inboxes.com/v2/user/{username}'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/json'</span>
+}
+
+r = requests.put(<span class="hljs-string">'https://api.inboxes.com/v2/user/{username}'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>PUT /user/{username}</code></p>
+<p>This can only be done by the logged in user.</p>
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"username"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"email"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"password"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"phone"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"userStatus"</span>: <span class="hljs-number">0</span>
+}
+</code></pre>
+<h3 id="updated-user-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>username</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>name that need to be updated</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td><a href="#schemauser">User</a></td>
+<td>true</td>
+<td>Updated user object</td>
+</tr>
+</tbody>
+</table>
+<h3 id="updated-user-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Invalid user supplied</td>
+<td>None</td>
+</tr>
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>User not found</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h2 id="delete-user">Delete user</h2>
+<p><a id="opIddeleteUser"></a></p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+result = RestClient.delete <span class="hljs-string">'https://api.inboxes.com/v2/user/{username}'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+
+r = requests.delete(<span class="hljs-string">'https://api.inboxes.com/v2/user/{username}'</span>, params={
+
+)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>DELETE /user/{username}</code></p>
+<p>This can only be done by the logged in user.</p>
+<h3 id="delete-user-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>username</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>The name that needs to be deleted</td>
+</tr>
+</tbody>
+</table>
+<h3 id="delete-user-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Invalid username supplied</td>
+<td>None</td>
+</tr>
+<tr>
+<td>404</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
+<td>User not found</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h1 id="schemas">Schemas</h1>
+<h2 id="tocsdomain">Domain</h2>
+<p><a id="schemadomain"></a></p>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"validate"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"status"</span>: <span class="hljs-string">"missing validation"</span>,
+  <span class="hljs-attr">"active"</span>: <span class="hljs-literal">false</span>
+}
+
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>name of the domain</td>
+</tr>
+<tr>
+<td>validate</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>DNS TXT record to add to validate ownership</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>Domain Status</td>
+</tr>
+<tr>
+<td>active</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<h4 id="enumerated-values">Enumerated Values</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>status</td>
+<td>missing validation</td>
+</tr>
+<tr>
+<td>status</td>
+<td>validated</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tocsdomainin">DomainIn</h2>
+<p><a id="schemadomainin"></a></p>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"mydomain.com"</span>
+}
+
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>name of the domain</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tocsinbox">Inbox</h2>
+<p><a id="schemainbox"></a></p>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>
+}
+
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>Unique ID for this inbox</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>user @ domain i.e <a href="mailto:me@theinboxes.com">me@theinboxes.com</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="tocsuser">User</h2>
+<p><a id="schemauser"></a></p>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"username"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"email"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"password"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"phone"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"userStatus"</span>: <span class="hljs-number">0</span>
+}
+
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer(int64)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>username</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>firstName</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>lastName</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>userStatus</td>
+<td>integer(int32)</td>
+<td>false</td>
+<td>none</td>
+<td>User Status</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tocstag">Tag</h2>
+<p><a id="schematag"></a></p>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>
+}
+
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer(int64)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tocspet">Pet</h2>
+<p><a id="schemapet"></a></p>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"category"</span>: {
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"mydomain.com"</span>
+  },
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"doggie"</span>,
+  <span class="hljs-attr">"photoUrls"</span>: [
+    <span class="hljs-string">"string"</span>
+  ],
+  <span class="hljs-attr">"tags"</span>: [
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>
+    }
+  ],
+  <span class="hljs-attr">"status"</span>: <span class="hljs-string">"available"</span>
+}
+
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer(int64)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>category</td>
+<td><a href="#schemadomainin">DomainIn</a></td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>photoUrls</td>
+<td>[string]</td>
+<td>true</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>[<a href="#schematag">Tag</a>]</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>pet status in the store</td>
+</tr>
+</tbody>
+</table>
+<h4 id="enumerated-values">Enumerated Values</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>status</td>
+<td>available</td>
+</tr>
+<tr>
+<td>status</td>
+<td>pending</td>
+</tr>
+<tr>
+<td>status</td>
+<td>sold</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tocsapiresponse">ApiResponse</h2>
+<p><a id="schemaapiresponse"></a></p>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"code"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"string"</span>
+}
+
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>integer(int32)</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<!-- Renderer: Shins v2.3.2-4 -->
+      </div>
+      <div class="dark-box">
+        
+          <div class="lang-selector">
+            
+              
+                <a href="#" data-language-name="ruby">Ruby</a>
+              
+            
+              
+                <a href="#" data-language-name="python">Python</a>
+              
+            
+          </div>
+        
+      </div>
+    </div>
+  </body>
+</html>
